@@ -13,7 +13,6 @@
  * JS Standard: ESlint
  *
  */
-document.addEventListener("click", () => console.log("i be clicked"));
 /**
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
@@ -65,15 +64,11 @@ function addActiveClass() {
     const topOffset = section.getBoundingClientRect().top;
     const bottomOffset = section.getBoundingClientRect().bottom;
     const topThirdOfWindow = window.innerHeight / 3;
-    console.log(`topOffset for ${section.id}: ${topOffset}`);
-    console.log(`bottomOffset for ${section.id}: ${bottomOffset}`);
-    console.log("topThirdOfWindow:", topThirdOfWindow);
     if (topOffset <= topThirdOfWindow && bottomOffset > topThirdOfWindow) {
       section.classList.add("your-active-class");
     } else if (section.classList != null) {
       section.classList.remove("your-active-class");
     }
-    console.log(section.classList);
   });
 }
 
