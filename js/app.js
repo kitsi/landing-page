@@ -13,7 +13,7 @@
  * JS Standard: ESlint
  *
  */
-
+document.addEventListener("click", () => console.log("i be clicked"));
 /**
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
@@ -23,7 +23,9 @@
  * Define Global Variables
  *
  */
-
+const navUl = document.querySelector("#navbar__list");
+const mainEl = document.querySelector("main");
+const allMainChildren = mainEl.children;
 /**
  * End Global Variables
  * Start Helper Functions
@@ -37,6 +39,25 @@
  */
 
 // build the nav
+
+// make array of sections & remove header
+const sections = Array.from(allMainChildren, (el) => el);
+sections.shift();
+
+// add section links to nav ul
+function addSectionsToNav() {
+  sections.forEach((section) => {
+    const liEl = document.createElement("li");
+    const aEl = document.createElement("a");
+    aEl.href = `#${section.id}`;
+    aEl.textContent = section.dataset.nav;
+    aEl.classList.add("menu__link");
+    liEl.appendChild(aEl);
+    navUl.appendChild(liEl);
+  });
+}
+
+addSectionsToNav();
 
 // Add class 'active' to section when near top of viewport
 
