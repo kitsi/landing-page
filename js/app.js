@@ -25,6 +25,9 @@
 const navUl = document.querySelector("#navbar__list");
 const mainEl = document.querySelector("main");
 const allMainChildren = mainEl.children;
+// make array of sections & remove header
+const sections = Array.from(allMainChildren, (el) => el);
+sections.shift();
 /**
  * End Global Variables
  * Start Helper Functions
@@ -38,12 +41,6 @@ const allMainChildren = mainEl.children;
  */
 
 // build the nav
-
-// make array of sections & remove header
-const sections = Array.from(allMainChildren, (el) => el);
-sections.shift();
-
-// add section links to nav ul
 function addSectionsToNav() {
   sections.forEach((section) => {
     const liEl = document.createElement("li");
@@ -51,12 +48,11 @@ function addSectionsToNav() {
     aEl.href = `#${section.id}`;
     aEl.textContent = section.dataset.nav;
     aEl.classList.add("menu__link");
+    aEl.classList.add(section.id);
     liEl.appendChild(aEl);
     navUl.appendChild(liEl);
   });
 }
-
-addSectionsToNav();
 
 // Add class 'active' to section when near top of viewport
 function addActiveClass() {
@@ -64,17 +60,21 @@ function addActiveClass() {
     const topOffset = section.getBoundingClientRect().top;
     const bottomOffset = section.getBoundingClientRect().bottom;
     const topThirdOfWindow = window.innerHeight / 3;
+    const navLink = navUl.querySelector(`.${section.id}`);
     if (topOffset <= topThirdOfWindow && bottomOffset > topThirdOfWindow) {
       section.classList.add("your-active-class");
+      navLink.classList.add("active");
     } else if (section.classList != null) {
       section.classList.remove("your-active-class");
+      navLink.classList.remove("active");
     }
   });
 }
 
 // Scroll to anchor ID using scrollTO event
-
-window.addEventListener("scroll", () => addActiveClass());
+function scrollToSection(e) {
+  console.log(e);
+}
 
 /**
  * End Main Functions
@@ -83,7 +83,11 @@ window.addEventListener("scroll", () => addActiveClass());
  */
 
 // Build menu
-
+addSectionsToNav();
 // Scroll to section on link click
-
+navUl.addEventListener("click", (e) => {
+  e.preventDefault;
+  scrollToSection(e);
+});
 // Set sections as active
+window.addEventListener("scroll", () => addActiveClass());
