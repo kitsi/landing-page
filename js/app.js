@@ -63,10 +63,12 @@ addSectionsToNav();
 function addActiveClass() {
   sections.forEach((section) => {
     const topOffset = section.getBoundingClientRect().top;
+    const bottomOffset = section.getBoundingClientRect().bottom;
     const topThirdOfWindow = window.innerHeight / 3;
     console.log(`topOffset for ${section.id}: ${topOffset}`);
+    console.log(`bottomOffset for ${section.id}: ${bottomOffset}`);
     console.log("topThirdOfWindow:", topThirdOfWindow);
-    if (topOffset <= topThirdOfWindow && topOffset > -100) {
+    if (topOffset <= topThirdOfWindow && bottomOffset > topThirdOfWindow) {
       section.classList.add("your-active-class");
     } else if (section.classList != null) {
       section.classList.remove("your-active-class");
