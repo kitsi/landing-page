@@ -63,10 +63,10 @@ function addActiveClass() {
     const navLink = navUl.querySelector(`.${section.id}`);
     if (topOffset <= topThirdOfWindow && bottomOffset > topThirdOfWindow) {
       section.classList.add("your-active-class");
-      navLink.classList.add("active");
+      navLink.classList.add("nav-active");
     } else if (section.classList != null) {
       section.classList.remove("your-active-class");
-      navLink.classList.remove("active");
+      navLink.classList.remove("nav-active");
     }
   });
 }

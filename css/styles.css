@@ -89,9 +89,8 @@ section {
   transition: ease 0.3s all;
 }
 
-.active {
+.nav-active {
   background: #888686;
-  color: #fff;
   transition: ease 0.3s all;
 }
 
