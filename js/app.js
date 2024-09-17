@@ -60,8 +60,24 @@ function addSectionsToNav() {
 addSectionsToNav();
 
 // Add class 'active' to section when near top of viewport
+function addActiveClass() {
+  sections.forEach((section) => {
+    const topOffset = section.getBoundingClientRect().top;
+    const topThirdOfWindow = window.innerHeight / 3;
+    console.log(`topOffset for ${section.id}: ${topOffset}`);
+    console.log("topThirdOfWindow:", topThirdOfWindow);
+    if (topOffset <= topThirdOfWindow && topOffset > -100) {
+      section.classList.add("your-active-class");
+    } else if (section.classList != null) {
+      section.classList.remove("your-active-class");
+    }
+    console.log(section.classList);
+  });
+}
 
 // Scroll to anchor ID using scrollTO event
+
+window.addEventListener("scroll", () => addActiveClass());
 
 /**
  * End Main Functions
