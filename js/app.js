@@ -25,7 +25,7 @@
 const navUl = document.querySelector("#navbar__list");
 const mainEl = document.querySelector("main");
 const allMainChildren = mainEl.children;
-// make array of sections & remove header
+// make array of sections within main & remove header
 const sections = Array.from(allMainChildren, (el) => el);
 sections.shift();
 /**
@@ -73,7 +73,11 @@ function addActiveClass() {
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection(e) {
-  console.log(e);
+  const linkId = e.target.href.split("#")[1];
+  const targetEl = document.querySelector(`#${linkId}`);
+  if (targetEl) {
+    targetEl.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 /**
@@ -86,7 +90,7 @@ function scrollToSection(e) {
 addSectionsToNav();
 // Scroll to section on link click
 navUl.addEventListener("click", (e) => {
-  e.preventDefault;
+  e.preventDefault();
   scrollToSection(e);
 });
 // Set sections as active
